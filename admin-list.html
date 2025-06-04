@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员管理 - 合同图书管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e3f0ff 0%, #f8fbff 100%);
+            min-height: 100vh;
+        }
+        .navbar {
+            background: #2563eb;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+        }
+        .navbar-brand, .nav-link, .navbar .btn {
+            color: #fff !important;
+        }
+        .nav-link.active {
+            font-weight: bold;
+            border-bottom: 2px solid #fff;
+        }
+        .main-section {
+            max-width: 1100px;
+            margin: 40px auto 0 auto;
+            padding: 0 16px;
+        }
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2563eb;
+            margin-bottom: 18px;
+        }
+        .table-section {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+            padding: 28px 24px 20px 24px;
+            margin-bottom: 32px;
+        }
+        .table thead th {
+            background: #f3f6fd;
+            color: #2563eb;
+            font-weight: 600;
+        }
+        .footer {
+            color: #888;
+            font-size: 0.95rem;
+            text-align: center;
+            margin-top: 60px;
+            padding-bottom: 20px;
+        }
+        .search-bar {
+            max-width: 400px;
+        }
+        .btn-add {
+            background: #2563eb;
+            color: #fff;
+        }
+        .btn-add:hover {
+            background: #1746a2;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark px-4">
+    <a class="navbar-brand d-flex align-items-center" href="dashboard.html">
+        <i class="bi bi-journal-bookmark-fill me-2" style="font-size:2rem;"></i>
+        合同图书管理系统
+    </a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="dashboard.html">仪表盘</a></li>
+            <li class="nav-item"><a class="nav-link" href="contract-list.html">合同管理</a></li>
+            <li class="nav-item"><a class="nav-link" href="book-list.html">图书管理</a></li>
+            <li class="nav-item"><a class="nav-link" href="author-list.html">作者管理</a></li>
+            <li class="nav-item"><a class="nav-link" href="user-list.html">用户管理</a></li>
+            <li class="nav-item"><a class="nav-link active" href="admin-list.html">管理员管理</a></li>
+            <li class="nav-item"><a class="nav-link" href="sales-view.html">销售数据</a></li>
+            <li class="nav-item"><a class="nav-link" href="order-list.html">图书订购</a></li>
+            <li class="nav-item"><a class="nav-link" href="distribution.html">图书分发</a></li>
+            <li class="nav-item"><a class="nav-link" href="personal-info.html">个人信息</a></li>
+        </ul>
+        <div class="d-flex align-items-center">
+            <i class="bi bi-person" style="font-size:1.3rem;"></i>
+            <i class="bi bi-gear ms-3" style="font-size:1.3rem;"></i>
+            <button class="btn btn-outline-light ms-3">登出</button>
+        </div>
+    </div>
+</nav>
+<div class="main-section">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="section-title mb-0">管理员管理</div>
+        <button class="btn btn-add" data-bs-toggle="modal" data-bs-target="#addAdminModal"><i class="bi bi-plus-lg me-1"></i>新建管理员</button>
+    </div>
+    <div class="mb-3 d-flex justify-content-between align-items-center">
+        <input type="text" class="form-control search-bar" placeholder="搜索用户名、姓名、邮箱...">
+        <button class="btn btn-outline-primary ms-2"><i class="bi bi-search"></i> 搜索</button>
+    </div>
+    <div class="table-section">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>管理员ID</th>
+                        <th>用户名</th>
+                        <th>姓名</th>
+                        <th>邮箱</th>
+                        <th>电话</th>
+                        <th>角色</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>admin</td>
+                        <td>系统管理员</td>
+                        <td>admin@example.com</td>
+                        <td>13800000000</td>
+                        <td><span class="badge bg-primary">超级管理员</span></td>
+                        <td><span class="badge bg-success">启用</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#editAdminModal">编辑</button>
+                            <button class="btn btn-sm btn-outline-danger">删除</button>
+                            <button class="btn btn-sm btn-outline-primary me-1" onclick="location.href='admin-detail.html?id=5001'">查看详情</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>admin02</td>
+                        <td>张主管</td>
+                        <td>zhangzg@example.com</td>
+                        <td>13988887777</td>
+                        <td><span class="badge bg-secondary">普通管理员</span></td>
+                        <td><span class="badge bg-success">启用</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#editAdminModal">编辑</button>
+                            <button class="btn btn-sm btn-outline-danger">删除</button>
+                            <button class="btn btn-sm btn-outline-primary me-1" onclick="location.href='admin-detail.html?id=5002'">查看详情</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>admin03</td>
+                        <td>李助理</td>
+                        <td>lizhuli@example.com</td>
+                        <td>13766665555</td>
+                        <td><span class="badge bg-secondary">普通管理员</span></td>
+                        <td><span class="badge bg-danger">禁用</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#editAdminModal">编辑</button>
+                            <button class="btn btn-sm btn-outline-danger">删除</button>
+                            <button class="btn btn-sm btn-outline-primary me-1" onclick="location.href='admin-detail.html?id=5003'">查看详情</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <div class="text-muted">共 3 条记录</div>
+            <nav>
+                <ul class="pagination mb-0">
+                    <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- 新建管理员弹窗 -->
+<div class="modal fade" id="addAdminModal" tabindex="-1" aria-labelledby="addAdminModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addAdminModalLabel">新建管理员</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label class="form-label">用户名 <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">姓名 <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">邮箱 <span class="text-danger">*</span></label>
+            <input type="email" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">电话</label>
+            <input type="tel" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">角色 <span class="text-danger">*</span></label>
+            <select class="form-select" required>
+              <option value="super">超级管理员</option>
+              <option value="normal">普通管理员</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">状态 <span class="text-danger">*</span></label>
+            <select class="form-select" required>
+              <option value="enabled">启用</option>
+              <option value="disabled">禁用</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">密码 <span class="text-danger">*</span></label>
+            <input type="password" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">确认密码 <span class="text-danger">*</span></label>
+            <input type="password" class="form-control" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 编辑管理员弹窗（内容与新建类似，可复用） -->
+<div class="modal fade" id="editAdminModal" tabindex="-1" aria-labelledby="editAdminModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editAdminModalLabel">编辑管理员</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label class="form-label">用户名 <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" value="admin02" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">姓名 <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" value="张主管" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">邮箱 <span class="text-danger">*</span></label>
+            <input type="email" class="form-control" value="zhangzg@example.com" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">电话</label>
+            <input type="tel" class="form-control" value="13988887777">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">角色 <span class="text-danger">*</span></label>
+            <select class="form-select" required>
+              <option value="super">超级管理员</option>
+              <option value="normal" selected>普通管理员</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">状态 <span class="text-danger">*</span></label>
+            <select class="form-select" required>
+              <option value="enabled" selected>启用</option>
+              <option value="disabled">禁用</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">密码</label>
+            <input type="password" class="form-control" placeholder="如需修改请填写">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">确认密码</label>
+            <input type="password" class="form-control" placeholder="如需修改请填写">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">© 2025 年 - 合同图书管理系统</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
